@@ -5,7 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+
+@NamedQueries({
+@NamedQuery(name = "Deposit.findbyId" , query = "select o from Deposit o where o.id = id"),
+})
 @Entity
 public class Deposit {
 	@Id
@@ -49,5 +55,13 @@ public class Deposit {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public Loan getLoan() {
+		return loan;
+	}
+	
+	public void setLoan (Loan loan) {
+		this.loan = loan;
 	}
 }

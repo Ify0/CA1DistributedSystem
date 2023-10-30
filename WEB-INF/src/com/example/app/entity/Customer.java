@@ -11,7 +11,8 @@ public class Customer {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private int id;
 	 
-	    private String name;
+	 	private String customerId;
+	    private String customerName;
 	    private String phoneNumber;
 	    private String address;
 	    private int annualSalary;
@@ -20,22 +21,23 @@ public class Customer {
 	    	
 	    }
 	    
-	    public Customer (String name , String phoneNumber , String address , int annualSalary) {
-	    	this.name = name;
+	    public Customer (String customerId , String customerName , String address , String phoneNumber , int annualSalary) {
+	    	this.customerId = customerId;
+	    	this.customerName = customerName;
 	    	this.phoneNumber = phoneNumber;
 	    	this.address = address;
 	    	this.annualSalary = annualSalary;
 	    }
 
-		public String getName() {
-			return name;
+		public String getCustomerName() {
+			return customerName;
 		}
 
-		public void setName(String name) {
-			this.name = name;
+		public void setcustomerName(String customerName) {
+			this.customerName = customerName;
 		}
 
-		public String getPhoneNumber() {
+		public String  getPhoneNumber() {
 			return phoneNumber;
 		}
 
@@ -59,11 +61,11 @@ public class Customer {
 			this.annualSalary = annualSalary;
 		}
 		
-		public int getId() {
-			return id;
+		public String getCustomerId() {
+			return customerId;
 		}
 		
-		public void setId(int id) {
-			this.id = id;
+		public void setCustomerId(String customerId) {
+			this.customerId = customerId;
 		}
 }

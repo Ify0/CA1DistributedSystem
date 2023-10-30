@@ -1,9 +1,14 @@
 package com.example.app.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.example.app.entity.Customer;
+import com.example.app.entity.Deposit;
 import com.example.app.entity.Loan;
 
 public class LoanDAO {
@@ -37,6 +42,26 @@ public class LoanDAO {
 				em.getTransaction().commit();
 				em.close();
 				return updatedLoan;
+			}
+			
+			public List<Loan> getAllLoans(){
+				EntityManager em = emf.createEntityManager();
+				em.getTransaction().begin();
+				List<Loan> LoanFromDB = new ArrayList<Loan>();
+				LoanFromDB = em.createNamedQuery("Loan.findAll").getResultList();
+				em.getTransaction().commit();
+				em.close();
+				return LoanFromDB;
+		}
+			public Loan getLoantbyId(int id) {
+				EntityManager em = emf.createEntityManager();
+				List<Loan> loans = (List<Loan>) em.createNamedQuery("Loan.findbyId").setParameter("id", id).getResultList();
+				em.close();
+				Loan lo = new Loan();
+				for (Loan l : loans) {
+					lo = l;
+				}
+					return lo;
 			}
 
 }

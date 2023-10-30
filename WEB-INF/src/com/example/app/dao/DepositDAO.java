@@ -1,5 +1,7 @@
 package com.example.app.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -38,5 +40,15 @@ public class DepositDAO {
 				em.close();
 				return updatedDeposit;
 			}
-
+			
+			public Deposit getDepositbyId(int id) {
+				EntityManager em = emf.createEntityManager();
+				List<Deposit> deposits = (List<Deposit>) em.createNamedQuery("Deposit.findbyId").setParameter("id", id).getResultList();
+				em.close();
+				Deposit depo = new Deposit();
+				for (Deposit d : deposits) {
+					depo = d;
+				}
+					return depo;
+			}
 }
